@@ -1,0 +1,23 @@
+{
+    "contact": {
+      "firstName": "Miriam",
+      "lastName": "Martinez",
+      "email": "mMartinez@gmail.com",
+      "favoriteColor": "Green",
+      "birthday": "08/12/01"
+    },
+    "contact2": {
+      "firstName": "Sue",
+      "lastName": "Hoskins",
+      "email": "hoskinsmom14@gmail.com",
+      "favoriteColor": "Purple",
+      "birthday": "06/14/58"
+    },
+    "contact3": {
+      "firstName": "Kayson",
+      "lastName": "Garn",
+      "email": "kGarn@gmail.com",
+      "color": "Blue",
+      "birthday": "03/14/02"
+    }
+  }
