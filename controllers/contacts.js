@@ -1,7 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res, next) => {
+const getContacts = async (req, res, next) => {
   const result = await mongodb.getDb().db("sample_mflix").collection('contacts').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -9,7 +9,7 @@ const getAll = async (req, res, next) => {
   });
 };
 
-const getSingle = async (req, res, next) => {
+const getContactById = async (req, res, next) => {
   const userId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDb()
@@ -22,4 +22,4 @@ const getSingle = async (req, res, next) => {
   });
 };
 
-module.exports = { getAll, getSingle };
+module.exports = { getContacts, getContactById };
