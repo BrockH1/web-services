@@ -22,4 +22,61 @@ const getContactById = async (req, res, next) => {
   });
 };
 
-module.exports = { getContacts, getContactById };
+const buildContact = async (req, res) => {
+  const person =
+  {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    color: req.body.color,
+    birthday: req.body.birthday
+  }
+  const query = await mongodb
+  .getDb()
+  .db("sample_mflix")
+  .collection("contacts")
+  .insertOne(person);
+
+  if (query.acknowledged) {
+    res.status(201).json(query);
+  } else {
+    res.status(500).json(query.error || 'Could not create contact');
+  }
+};
+
+const updateContact = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  // be aware of updateOne if you only want to update specific fields
+  const person = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    color: req.body.color,
+    birthday: req.body.birthday
+  };
+
+  const query = await mongodb
+    .getDb()
+    .db("sample_mflix")
+    .collection("contacts")
+    .replaceOne({ _id: userId }, person);
+  console.log(query);
+  if (query.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(query.error || 'Could not update contact');
+  }
+};
+
+const deleteContact = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const query = await mongodb.getDb().db("sample_mflix").collection('contacts').deleteOne({ _id: userId });
+  console.log(query);
+  if (query.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(query.error || 'Could not delete contact.');
+  }
+};
+
+module.exports = { getContacts, getContactById, buildContact, updateContact, deleteContact };

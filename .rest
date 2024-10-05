@@ -2,12 +2,24 @@ GET http://localhost:3000
 #####
 
 GET http://localhost:3000/contacts
+
 ###
 
-GET http://localhost:3000/contacts/66f6c44993d05bfe99d29b81
+POST http://localhost:3000/contacts HTTP/1.1 
+content-type: application/json
+
+{
+    "firstName":"Phil", "lastName":"Baxter", "email":"baxter@phil.com", "color":"Blue", "birthday":"09/12/09"
+}
+
+###
+PUT http://localhost:3000/contacts/670172613b9abd4cde39d9f2 HTTP/1.1 
+content-type: application/json
+
+{
+"firstName":"This", "lastName":"is", "email":"a", "color":"test", "birthday":"that worked!"
+}
+
 ###
 
-GET http://localhost:3000/contacts/66f6c45993d05bfe99d29b82
-###
-
-GET http://localhost:3000/contacts/66f6c46193d05bfe99d29b83
+DELETE http://localhost:3000/contacts/670172613b9abd4cde39d9f2 HTTP/1.1 
